@@ -79,6 +79,25 @@ form {
     gap: 12px;
 }
 
+header.scrolled {
+    background-color: var(--point-color);
+}
+
+#scroll-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#scroll-top-btn.visible {
+    display: block;
+}
+
+#scroll-top-btn.visible {
+    display: block;
+}
+
 section {
     min-height: 100vh;
 }

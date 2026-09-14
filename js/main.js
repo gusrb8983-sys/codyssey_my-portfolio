@@ -1,12 +1,14 @@
 const savedTheme = localStorage.getItem('theme');
-
-if (savedTheme === 'dark') {
-    document.body.setAttribute('data-theme', 'dark');
-}
 const hamburgerBtn = document.querySelector('#hamburger-btn');
 const nav = document.querySelector('nav');
 const darkModeBtn = document.querySelector('#dark-mode-btn');
 const navLinks = document.querySelectorAll('nav a');
+const header = document.querySelector('header');
+const scrollTopBtn = document.querySelector('#scroll-top-btn');
+
+if (savedTheme === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+}
 
 navLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
@@ -34,4 +36,22 @@ darkModeBtn.addEventListener('click', () => {
 
     document.body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+});
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+        header.classList.add('scrolled')
+    } else {
+        header.classList.remove('scrolled')
+    }
+
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
