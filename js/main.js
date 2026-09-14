@@ -17,13 +17,13 @@ navLinks.forEach((link) => {
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
         targetSection.scrollIntoView({ behavior: 'smooth' });
+        nav.classList.remove('active');
     });
 });
 
 hamburgerBtn.addEventListener('click', () => {
     nav.classList.toggle('active');
 });
-
 darkModeBtn.addEventListener('click', () => {
     const currentTheme = document.body.getAttribute('data-theme');
     let newTheme;
