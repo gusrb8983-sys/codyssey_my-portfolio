@@ -99,5 +99,16 @@ header.scrolled {
 }
 
 section {
-    min-height: 100vh;
+    min-height: 50vh;
+}
+
+main section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+main section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
