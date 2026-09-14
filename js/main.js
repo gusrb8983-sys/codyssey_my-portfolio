@@ -5,6 +5,7 @@ const darkModeBtn = document.querySelector('#dark-mode-btn');
 const navLinks = document.querySelectorAll('nav a');
 const header = document.querySelector('header');
 const scrollTopBtn = document.querySelector('#scroll-top-btn');
+const form = document.querySelector('form')
 
 if (savedTheme === 'dark') {
     document.body.setAttribute('data-theme', 'dark');
@@ -69,3 +70,39 @@ const sections = document.querySelectorAll('main section');
 sections.forEach((section) => {
     observer.observe(section);
 });
+
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const messageInput = document.querySelector('#message');
+const nameError = document.querySelector('#name-error');
+const emailError = document.querySelector('#email-error');
+const messageError = document.querySelector('#message-error');
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const formSuccess = document.querySelector('#form-success')
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let isVaild = true;
+
+    if (nameInput.value === ''){
+        nameError.textContent = ' 이름을 입력해주세요';
+        isVaild = false;
+    }
+
+    if (emailInput.value === ''){
+        emailError.textContent = 'email을 입력해주세요';
+    } else if (!emailPattern.test(emailInput.value)) {
+        emailError.textContent = '올바른 이메일 형식이 아닙니다';
+        isVaild = false;
+    }
+
+    if (messageInput.value === ''){
+        messageError.textContent = '메시지를 입력해주세요';
+        isVaild = false;
+    }
+
+    if (isVaild) {
+        formSuccess.textContent = '폼 제출 성공!';
+    }
+})
