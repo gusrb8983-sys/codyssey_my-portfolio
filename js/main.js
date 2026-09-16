@@ -119,9 +119,15 @@ async function loadProjects() {
         } else {
             const cardsHTML = data.map((repo) => {
                 const { name, description, html_url } = repo;
+                
+                let descriptionText = description;
+                if (!description) {
+                    descriptionText = '설명이 없습니다.';
+                }
+
                 return `<article class="project-card">
                             <h3>${name}</h3>
-                            <p>${description}</p>
+                            <p>${descriptionText}</p>
                             <a href="${html_url}" target="_blank">GitHub에서 보기</a>
                         </article>`;
             }).join('');
