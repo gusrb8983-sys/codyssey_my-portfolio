@@ -85,19 +85,19 @@ form.addEventListener('submit', (event) => {
 
     let isVaild = true;
 
-    if (nameInput.value === ''){
+    if (nameInput.value === '') {
         nameError.textContent = ' 이름을 입력해주세요';
         isVaild = false;
     }
 
-    if (emailInput.value === ''){
+    if (emailInput.value === '') {
         emailError.textContent = 'email을 입력해주세요';
     } else if (!emailPattern.test(emailInput.value)) {
         emailError.textContent = '올바른 이메일 형식이 아닙니다';
         isVaild = false;
     }
 
-    if (messageInput.value === ''){
+    if (messageInput.value === '') {
         messageError.textContent = '메시지를 입력해주세요';
         isVaild = false;
     }
@@ -108,15 +108,28 @@ form.addEventListener('submit', (event) => {
 })
 
 async function loadProjects() {
-    const response = await fetch('https://api.github.com/users/gusrb8983-sys/repos');
-    const data = await response.json();
+    const projectList = document.querySelector('#project-list');
+    projectList.innerHTML = '<p>로딩 중...</p>';
 
-    const cardsHTML = data.map((repo) => {
-        return `<article class="project-card">
-                    <h3>${repo.name}</h3>
-                </article>`;
-    }).join('');
-    document.querySelector('#project-list').innerHTML = cardsHTML;
+    try {
+        const response = await fetch('https://api.github.com/users/gusrb8983-sys/repos');
+        const data = await response.json();
+        if (data.length === 0) {
+            projectList.innerHTML = '<p>표시할 프로젝트가 없습니다.</p>'
+        } else {
+            const cardsHTML = data.map((repo) => {
+                const { name, description, html_url } = repo;
+                return `<article class="project-card">
+                            <h3>${name}</h3>
+                            <p>${description}</p>
+                            <a href="${html_url}" target="_blank">GitHub에서 보기</a>
+                        </article>`;
+            }).join('');
+            projectList.innerHTML = cardsHTML;
+        }
+    } catch (error) {
+        projectList.innerHTML = '<p>프로젝트를 불러올 수 없습니다.</p>';
+    }
 }
 
 loadProjects();

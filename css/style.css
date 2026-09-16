@@ -1,15 +1,37 @@
 :root {
-    --bg-color: white;
-    --text-color: black;
-    --point-color: purple;
+    --bg-color: #fafafa;
+    --text-color: #1a1a1a;
+    --point-color: #4f46e5;
+    --accent-color: #f97316;
     --font-main: 'Arial', sans-serif;
     --spacing-md: 16px;
 }
 
 [data-theme="dark"] {
-    --bg-color: black;
-    --text-color: white;
-    --point-color: orange;
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --point-color: #818cf8;
+    --accent-color: #fb923c;
+}
+
+#hero {
+    background-color: var(--bg-color);
+}
+
+#about {
+    background-color: #f0f0f5;
+}
+
+#skills {
+    background-color: #f0f0f5;
+}
+
+#projects {
+    background-color: #f0f0f5;
+}
+
+#contact {
+    background-color: var(--bg-color);
 }
 
 body {
@@ -98,10 +120,6 @@ header.scrolled {
     display: block;
 }
 
-section {
-    min-height: 50vh;
-}
-
 main section {
     opacity: 0;
     transform: translateY(30px);
@@ -111,4 +129,25 @@ main section {
 main section.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+#about img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+button[type="submit"] {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #ea580c;
 }
