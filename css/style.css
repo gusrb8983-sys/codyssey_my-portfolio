@@ -22,18 +22,6 @@
     background-color: var(--bg-color);
 }
 
-#about {
-    background-color: #f0f0f5;
-}
-
-#skills {
-    background-color: #f0f0f5;
-}
-
-#projects {
-    background-color: #f0f0f5;
-}
-
 #contact {
     background-color: var(--bg-color);
 }
@@ -121,10 +109,6 @@ header.scrolled {
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
-
-#scroll-top-btn.visible {
-    display: block;
 }
 
 #scroll-top-btn.visible {

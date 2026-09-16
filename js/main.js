@@ -88,18 +88,25 @@ form.addEventListener('submit', (event) => {
     if (nameInput.value === '') {
         nameError.textContent = ' 이름을 입력해주세요';
         isVaild = false;
+    } else {
+        nameError.textContent = '';
     }
 
     if (emailInput.value === '') {
         emailError.textContent = 'email을 입력해주세요';
+        isVaild = false;
     } else if (!emailPattern.test(emailInput.value)) {
         emailError.textContent = '올바른 이메일 형식이 아닙니다';
         isVaild = false;
+    } else {
+        emailError.textContent = '';
     }
 
     if (messageInput.value === '') {
         messageError.textContent = '메시지를 입력해주세요';
         isVaild = false;
+    } else {
+        messageError.textContent = '';
     }
 
     if (isVaild) {
@@ -119,7 +126,7 @@ async function loadProjects() {
         } else {
             const cardsHTML = data.map((repo) => {
                 const { name, description, html_url } = repo;
-                
+
                 let descriptionText = description;
                 if (!description) {
                     descriptionText = '설명이 없습니다.';
