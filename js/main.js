@@ -106,3 +106,17 @@ form.addEventListener('submit', (event) => {
         formSuccess.textContent = '폼 제출 성공!';
     }
 })
+
+async function loadProjects() {
+    const response = await fetch('https://api.github.com/users/gusrb8983-sys/repos');
+    const data = await response.json();
+
+    const cardsHTML = data.map((repo) => {
+        return `<article class="project-card">
+                    <h3>${repo.name}</h3>
+                </article>`;
+    }).join('');
+    document.querySelector('#project-list').innerHTML = cardsHTML;
+}
+
+loadProjects();
